@@ -1,25 +1,31 @@
-<div id="form" class="container">
+<div class="container">
+<div id="form">
   <h2>Registrarse</h2>
-  <form action="/registro" method="POST">
+  <form action="/registro" method="POST" enctype="multipart/form-data">
  
     <label> Nombre de usuario
       <input type="text" name="username" placeholder="Nombre de usuario" />
     </label>
-
+  <br>
     <label> Email
       <input type="text" name="email" placeholder="Email" />
     </label>
- 
+ <br>
     <label> Contraseña
       <input type="password" name="password" placeholder="********" />
     </label>
-
+<br>
     <label> Descripción
       <input type="text" name="description" placeholder="Descripción" />
     </label>
+    <br>
+    <label> Imagen
+      <input type="file" name="imageFile"/>
+    </label>
     
- 
+ <br>
     <button type="submit">Crear cuenta</button>
  
   </form>
+</div>
 </div>
