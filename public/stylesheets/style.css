@@ -1,5 +1,4 @@
 body {
-  padding: 0px;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
 }
 
@@ -11,6 +10,7 @@ h1 {
   color: 15px;
   padding-top: 20px;
 }
+
 h2 {
   padding: 20px 0;
 }
@@ -19,7 +19,7 @@ h2 {
   padding: 20px;
 }
 
-img {
+.logo {
   width: 80px;
 }
 
@@ -29,4 +29,45 @@ img {
 
 .navbar-nav {
   padding-left: 10px;
+}
+
+footer{
+  background-color: #0d6efd;
+  color: blanchedalmond;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  padding: 15px 30px;
+}
+
+.botones-perfil a {
+  margin: 20px 0;
+}
+
+.botones-perfil button {
+  margin-bottom: 20px;
+}
+
+img {
+  height: 100%;
+}
+
+.details {
+  height: 600px;
+  object-fit: cover;
+}
+
+.photo-profile {
+  height: 80px;
+}
+
+.actor-image {
+  height: 120px;
+  object-fit: cover;
+}
+
+.actor{
+  height: 250px;
+  object-fit: cover;
+  padding-top: 20px;
 }

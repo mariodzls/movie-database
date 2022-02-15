@@ -1,0 +1,23 @@
+<h1>Editar el perfil de {{username}}</h1>
+
+<form action="/perfil/{{_id}}/editar" method="POST">
+
+    <label>
+        Email
+        <input type="text" name="email" value="{{email}}">
+    </label>
+
+    <br><br>
+
+    <label>
+        Descripción
+        <input type="text" name="description" value="{{description}}">
+    </label>
+
+    <br><br>
+
+
+    <input type="submit" value="Guardar edición">
+</form>
+
+<a href="/peliculas">Volver al perfil</a>

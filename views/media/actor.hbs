@@ -1,0 +1,14 @@
+<div class="container">
+<img src="https://www.themoviedb.org/t/p/original{{actor.profile_path}}" alt="" class="actor">
+
+<h1>{{actor.name}}</h1>
+{{actor.biography}}
+<ul>
+    {{#each credits}}
+
+    <li>{{title}} {{release_date}}</li>
+
+
+    {{/each}}
+</ul>
+</div>

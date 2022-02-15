@@ -1,0 +1,40 @@
+<div class="container">
+
+    <div class="row justify-content-around">
+
+
+
+
+        <div class="col-4">
+            <div>
+                <a href="/films/{{id}}">
+                    <img class="details" src=" https://www.themoviedb.org/t/p/original{{movieDetails.poster_path}}"
+                        alt="" />
+
+                    <h5 class="card-title">{{movieDetails.title}}</h5>
+                </a>
+
+                <p>{{movieDetails.overview}}</p>
+                <p>Rating: {{vote_average}}</p>
+
+            </div>
+        </div>
+        <div class="col-6">
+
+            <div class="row">
+
+                {{#each limCredits}}
+
+                <div class="col-6">
+                    <a href="/actor/{{id}}">
+                        <img src="https://www.themoviedb.org/t/p/original{{profile_path}}" alt="" class="actor-image">
+                        <div>{{name}}</div>
+                    </a>
+                </div>
+                {{/each}}
+            </div>
+
+        </div>
+
+    </div>
+</div>

@@ -1,3 +1,11 @@
 <div class="container">
 <h1>Perfil de {{user.username}}</h1>
+<img src="{{user.profileImg}}" alt="Imagen de usuario" class="photo-profile">
+<div class="flex botones-perfil">
+ <a href='/perfil/{{user._id}}/editar' class="btn btn-warning">Editar</a>
+
+<form action="/perfil/{{user._id}}/borrar"  method="POST">
+        <button class="btn btn-danger">Borrar perfil</button>
+    </form>
+    </div>
 </div>

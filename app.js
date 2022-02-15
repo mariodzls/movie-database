@@ -21,7 +21,7 @@ require("./config/sessions")(app);
 
 // default value for title local
 
-app.locals.title = `Movie-Database`;
+app.locals.appTitle = `Movie-Database`;
 
 // 👇 Start handling routes here
 const index = require("./routes/index");
@@ -33,8 +33,7 @@ app.use('/', registro)
 const perfil = require('./routes/profile.routes');
 app.use('/', perfil)
 
-const peliculas = require('./routes/films.routes');
-app.use('/', peliculas)
+
 
 // ❗ To handle errors. Routes that don't exist or errors that you handle in specific routes
 require("./error-handling")(app);
