@@ -17,7 +17,13 @@ h2 {
 
 .barra {
   padding: 20px;
-  background: linear-gradient(0deg, rgba(230,160,195,1) 31%, rgba(126,57,57,1) 100%)
+  background: linear-gradient(0deg, rgba(230,160,195,1) 31%, rgba(126,57,57,1) 100%);
+  position: fixed;
+  width: 100%;
+  z-index: 100;
+}
+.other {
+  padding-top: 100px;
 }
 
 .logo {
@@ -36,7 +42,7 @@ footer{
   background: linear-gradient(0deg, rgba(126,57,57,1) 4%, rgba(230,160,195,1) 100%);
   color: black;
   font-weight: bold;
-  position: fixed;
+  position: block;
   bottom: 0;
   width: 100%;
   padding: 15px 30px;
@@ -83,4 +89,7 @@ img {
   border-color: #00b7ff;
 }
 
-
+.img-fluid {
+  height: 600px;
+  margin-left: 90px;
+}
