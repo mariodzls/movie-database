@@ -4,7 +4,6 @@ const fileUploader = require('../config/cloudinary.config')
 const User = require('./../models/User.model')
 const saltRounds = 10
 
-
 const router = require("express").Router()
 
 router.get("/registro", (req, res, next) =>
@@ -49,7 +48,7 @@ router.post("/iniciar-sesion", (req, res, next) => {
             } else {
                 req.session.currentUser = user
                 console.log('El objeto de EXPRESS-SESSION', req.session)
-                res.redirect('/')
+                res.redirect('/perfil')
             }
         })
 })
