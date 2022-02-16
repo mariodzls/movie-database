@@ -18,9 +18,6 @@ router.post("/", (req, res, next) => {
     .get(`https://api.themoviedb.org/3/search/movie?api_key=1bcaa0ba2b7c234cefead395958d590e&query=~${search.movie}`)
     .then(movie => {
       const movies = movie.data
-
-
-
       res.render("../views/media/films", movies.results)
     })
 })

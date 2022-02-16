@@ -1,15 +1,15 @@
-const { isLoggedIn } = require('./../middleware/route-guard')
 const router = require("express").Router()
 const User = require('./../models/User.model')
 const fileUploader = require('../config/cloudinary.config')
+const { isLoggedIn, checkRole, check } = require("../middleware/route-guard")
+const { isAdmin, isUser, isMod } = require("../utils")
+// router.get("/perfil", (req, res, next) => {
 
-router.get("/perfil", (req, res, next) => {
-
-    res.render("../views/profile/profile", { user: req.session.currentUser })
-})
+//     res.render("../views/profile/profile", { user: req.session.currentUser })
+// })
 
 
-router.get('/perfil/editar/:user_id', isLoggedIn, (req, res, next) => {
+router.get('/perfil/editar/:user_id', isLoggedIn, check, (req, res, next) => {
 
     const { user_id } = req.params
 
@@ -20,7 +20,7 @@ router.get('/perfil/editar/:user_id', isLoggedIn, (req, res, next) => {
 })
 
 
-router.post("/perfil/editar/:user_id", fileUploader.single('imageFile'), (req, res, next) => {
+router.post("/perfil/editar/:user_id", fileUploader.single('imageFile'), isLoggedIn, check, (req, res, next) => {
 
     const { user_id } = req.params
     const { email, description } = req.body
@@ -35,7 +35,7 @@ router.post("/perfil/editar/:user_id", fileUploader.single('imageFile'), (req, r
 })
 
 
-router.post("/perfil/:user_id/borrar", isLoggedIn, (req, res, next) => {
+router.post("/perfil/:user_id/borrar", isLoggedIn, checkRole("ADMIN"), (req, res, next) => {
 
     const { user_id } = req.params
 
@@ -44,5 +44,15 @@ router.post("/perfil/:user_id/borrar", isLoggedIn, (req, res, next) => {
         .then(() => { res.redirect("/") })
         .catch(error => next(error))
 })
+
+router.get('/perfil', isLoggedIn, (req, res, next) => {
+
+    res.render('profile/profile', {
+      user: req.session.currentUser, 
+      isUser: isUser(req.session.currentUser),
+      isAdmin: isAdmin(req.session.currentUser),
+      isMod: isMod(req.session.currentUser),
+    })
+  })
 
 module.exports = router

@@ -42,10 +42,11 @@ footer{
   background: linear-gradient(0deg, rgba(126,57,57,1) 4%, rgba(230,160,195,1) 100%);
   color: black;
   font-weight: bold;
-  position: block;
+  position: fixed;
   bottom: 0;
   width: 100%;
   padding: 15px 30px;
+  margin-top: 40px;
 }
 
 .botones-perfil a {
@@ -100,3 +101,37 @@ img {
 
 
 
+.inicio-sesion {
+  padding: 100px;
+}
+.bd-placeholder-img {
+  font-size: 1.125rem;
+  text-anchor: middle;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  user-select: none;
+}
+
+@media (min-width: 768px) {
+  .bd-placeholder-img-lg {
+    font-size: 3.5rem;
+  }
+}
+
+.titulo-carta {
+  color: black;
+  font-style: normal;
+  font-weight: bold;
+}
+
+.card a {
+  text-decoration: none;
+}
+
+.card {
+  margin-bottom: 20px;
+}
+.films {
+  margin-top: 60px;
+  margin-bottom: 100px;
+}

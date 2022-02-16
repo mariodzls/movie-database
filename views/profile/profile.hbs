@@ -1,11 +1,14 @@
 <div class="container">
+    {{#if user}}
 <h1>Perfil de {{user.username}}</h1>
+{{/if}}
 <img src="{{user.profileImg}}" alt="Imagen de usuario" class="photo-profile">
 <div class="flex botones-perfil">
  <a href='/perfil/editar/{{user._id}}' class="btn btn-warning">Editar</a>
-
+{{#if isAdmin}}
 <form action="/perfil/{{user._id}}/borrar"  method="POST">
         <button class="btn btn-danger">Borrar perfil</button>
     </form>
+    {{/if}}
     </div>
 </div>

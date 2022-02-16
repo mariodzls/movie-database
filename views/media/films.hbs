@@ -1,11 +1,4 @@
-<div class="container">
-<h2>Movie List</h2>
-
-<p>{{appTitle}}</p>
-
-
-
-
+<div class="container films">
 
     <h1>Movies</h1>
     <div class="row">
@@ -18,7 +11,7 @@
                 <a href="/peliculas/{{id}}">
                     <img class="card-img-top" src="https://www.themoviedb.org/t/p/original{{poster_path}}" alt="" />
                     <div class="card-body">
-                        <h5 class="card-title">{{title}}</h5>
+                        <h5 class="card-title titulo-carta">{{title}}</h5>
                 </a>
 
             </div>
@@ -28,4 +21,4 @@
     {{/if}}
     {{/each}}
 </div>
-</div>
+
