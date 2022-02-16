@@ -4,6 +4,7 @@ const reviewSchema = new Schema({
     text: { type: String },
     movieId: String,
     userId: String,
+    username: String,
     movieId: String,
     rating: Number
 })

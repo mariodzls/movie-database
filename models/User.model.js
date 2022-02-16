@@ -7,6 +7,9 @@ const userSchema = new Schema(
     password: String,
     profileImg: { type: String, default: 'https://i.stack.imgur.com/l60Hf.png' },
     description: { type: String, default: 'No existe descripción.' },
+    favoriteMoviesIds: { type: [String], default: [] },
+    watchlistIds: { type: [String], default: [] },
+
     // add roles setup here
     role: {
       type: String,

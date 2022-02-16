@@ -1,8 +1,8 @@
 const { Schema } = require("mongoose");
 
 const listSchema = new Schema({
-    movieIds: String,
-    userId: { type: mongoose.Schema.Types.ObjectId, ref: "User"}
+    movieIds: [String],
+    userId: String
 })
 
 const List = model("List", listSchema)

@@ -12,6 +12,15 @@
                         alt="" />
 
                     <h5 class="card-title">{{movieDetails.title}}</h5>
+                    <div class="form-check form-switch">
+                        <input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault">
+                        <label class="form-check-label" for="flexSwitchCheckDefault">Añade esta películas a tus
+                            favoritas</label>
+                    </div>
+                    <div class="form-check form-switch">
+                        <input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault">
+                        <label class="form-check-label" for="flexSwitchCheckDefault">Añade a tu wishlist</label>
+                    </div>
                     <div>
                         <a href="/peliculas/{{movieDetails.id}}/create-review">Create review</a>
                     </div>
@@ -31,23 +40,34 @@
                 <div class="col-6">
                     <a href="/actor/{{id}}">
                         <img src="https://www.themoviedb.org/t/p/original{{profile_path}}" alt="" class="actor-image">
-                        <div>{{name}}</div>
+                        <div>{{name}} </div>
                     </a>
                 </div>
                 {{/each}}
-
                 Reviews:
+                {{#if reviews}}
                 <div class="row">
                     {{#each reviews}}
 
                     <div class="col-12">
 
-
+                        By: <h3>{{username}}</h3>
                         <div>{{text}}</div>
+                        <hr>
 
                     </div>
                     {{/each}}
                 </div>
+
+
+
+
+                {{else}}
+                Se el primero en dejar tu review de la película
+
+                {{/if}}
+
+
             </div>
 
         </div>

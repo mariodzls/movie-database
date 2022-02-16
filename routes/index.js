@@ -5,6 +5,8 @@ const Review = require('./../models/Review.model')
 const { isLoggedIn } = require('../middleware/route-guard.js');
 
 
+const ApiHandler = require("../api-handlers/tombd-handler");
+const apiHandler = new ApiHandler()
 
 router.get("/", (req, res, next) => res.render("index"))
 
@@ -26,8 +28,7 @@ router.post("/", (req, res, next) => {
 
 router.get("/peliculas", (req, res, next) => {
 
-  axios
-    .get("https://api.themoviedb.org/3/movie/popular?api_key=1bcaa0ba2b7c234cefead395958d590e")
+  apiHandler.getPopularMovies()
     .then((response) => {
       const movies = response.data
       res.render("../views/media/films", movies.results)
@@ -37,11 +38,23 @@ router.get("/peliculas", (req, res, next) => {
 
 router.get("/peliculas/:id", (req, res, next) => {
 
+
+
+  const favoriteMovie = document.querySelector("#flexSwitchCheckDefault")
+  console.log(favoriteMovie)
+
+
+
+
+
   let reviews = {}
 
   Review
     .find({ movieId: `${req.params.id}` })
     .then(reviewsFound => reviews = reviewsFound)
+
+
+
 
   axios
     .get(`https://api.themoviedb.org/3/movie/${req.params.id}?api_key=1bcaa0ba2b7c234cefead395958d590e`)
@@ -88,11 +101,13 @@ router.get("/peliculas/:id/create-review", (req, res, next) => {
 
 router.post("/peliculas/:id/create-review", (req, res, next) => {
 
-  let { rating, text, userId, movieId } = req.body
+  let { rating, text, userId, movieId, } = req.body
+  const username = req.session.currentUser.username
+  console.log(username)
 
   Review
-    .create({ rating, text, userId, movieId })
-    .then(() => console.log("creation is a success"))
+    .create({ rating, text, userId, movieId, username })
+    .then(() => res.redirect(`/peliculas/${req.params.id}`))
     .catch(err => console.log(err))
 })
 
