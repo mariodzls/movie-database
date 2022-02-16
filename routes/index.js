@@ -4,29 +4,23 @@ const router = require("express").Router();
 const Review = require('./../models/Review.model')
 const { isLoggedIn } = require('../middleware/route-guard.js');
 
-/* GET home page */
-router.get("/", (req, res, next) => {
-  res.render("index");
-});
+
+
+router.get("/", (req, res, next) => res.render("index"))
 
 router.post("/", (req, res, next) => {
 
-
   const search = req.body
-
 
   axios
     .get(`https://api.themoviedb.org/3/search/movie?api_key=1bcaa0ba2b7c234cefead395958d590e&query=~${search.movie}`)
-
     .then(movie => {
-
       const movies = movie.data
 
 
 
       res.render("../views/media/films", movies.results)
     })
-
 })
 
 
@@ -34,25 +28,20 @@ router.get("/peliculas", (req, res, next) => {
 
   axios
     .get("https://api.themoviedb.org/3/movie/popular?api_key=1bcaa0ba2b7c234cefead395958d590e")
-    .then((movie) => {
-
-      movies = movie.data
-
+    .then((response) => {
+      const movies = response.data
       res.render("../views/media/films", movies.results)
-
     })
-
-
 })
 
+
 router.get("/peliculas/:id", (req, res, next) => {
-  const requ = req.params.id
+
   let reviews = {}
+
   Review
     .find({ movieId: `${req.params.id}` })
     .then(reviewsFound => reviews = reviewsFound)
-  //await MyModel.find({ name: 'john', age: { $gte: 18 } }).exec();
-
 
   axios
     .get(`https://api.themoviedb.org/3/movie/${req.params.id}?api_key=1bcaa0ba2b7c234cefead395958d590e`)
@@ -69,8 +58,11 @@ router.get("/peliculas/:id", (req, res, next) => {
     })
 })
 
+
 router.get("/actor/:id", (req, res, next) => {
-  const id = req.params.id
+
+  const { id } = req.params
+
   axios
     .get(`https://api.themoviedb.org/3/person/${id}?api_key=1bcaa0ba2b7c234cefead395958d590e&language=en-US`)
     .then((actor) => {
@@ -79,40 +71,30 @@ router.get("/actor/:id", (req, res, next) => {
         .then((credits) => {
           actor = actor.data
           credits = (credits.data.cast)
-          console.log(credits)
           res.render("../views/media/actor", { actor, credits })
         })
     })
 })
 
-router.get("/peliculas/:id/create-review", isLoggedIn, (req, res, next) => {
+
+router.get("/peliculas/:id/create-review", (req, res, next) => {
+
   const movieId = req.params
-  console.log(req.params)
-
-  const currentUser = req.session.currentUser
-
+  const { currentUser } = req.session
 
   res.render("../views/media/create-review-form", { movieId, currentUser })
-
-
-
 })
 
+
 router.post("/peliculas/:id/create-review", (req, res, next) => {
+
   let { rating, text, userId, movieId } = req.body
 
-  console.log(req.body)
-  console.log(rating, text, userId, movieId)
   Review
     .create({ rating, text, userId, movieId })
     .then(() => console.log("creation is a success"))
     .catch(err => console.log(err))
 })
-
-
-
-
-
 
 
 module.exports = router;
