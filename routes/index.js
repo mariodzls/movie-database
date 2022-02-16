@@ -20,7 +20,7 @@ router.post("/", (req, res, next) => {
     .then(movie => {
 
       const movies = movie.data
-      console.log(movies)
+      
 
 
       res.render("../views/media/films", movies.results)
