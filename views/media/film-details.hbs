@@ -12,6 +12,9 @@
                         alt="" />
 
                     <h5 class="card-title">{{movieDetails.title}}</h5>
+                    <div>
+                        <a href="/peliculas/{{movieDetails.id}}/create-review">Create review</a>
+                    </div>
                 </a>
 
                 <p>{{movieDetails.overview}}</p>
@@ -32,9 +35,25 @@
                     </a>
                 </div>
                 {{/each}}
+
+                Reviews:
+                <div class="row">
+                    {{#each reviews}}
+
+                    <div class="col-12">
+
+
+                        <div>{{text}}</div>
+
+                    </div>
+                    {{/each}}
+                </div>
             </div>
 
         </div>
+
+
+
 
     </div>
 </div>

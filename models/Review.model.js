@@ -1,9 +1,11 @@
-const { Schema, Mongoose } = require("mongoose");
+const { Schema, model } = require("mongoose");
 
 const reviewSchema = new Schema({
     text: { type: String },
     movieId: String,
-    userId: { type: mongoose.Schema.Types.ObjectId, ref: "User"}
+    userId: String,
+    movieId: String,
+    rating: Number
 })
 
 const Review = model("Review", reviewSchema)

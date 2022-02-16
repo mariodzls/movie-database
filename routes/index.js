@@ -1,6 +1,7 @@
 const { Router } = require("express");
 const { default: axios } = require("axios")
 const router = require("express").Router();
+const Review = require('./../models/Review.model')
 
 /* GET home page */
 router.get("/", (req, res, next) => {
@@ -45,6 +46,13 @@ router.get("/peliculas", (req, res, next) => {
 
 router.get("/peliculas/:id", (req, res, next) => {
   const requ = req.params.id
+  let reviews = {}
+  Review
+    .find({ movieId: `${req.params.id}` })
+    .then(reviewsFound => reviews = reviewsFound)
+  //await MyModel.find({ name: 'john', age: { $gte: 18 } }).exec();
+
+
   axios
     .get(`https://api.themoviedb.org/3/movie/${req.params.id}?api_key=1bcaa0ba2b7c234cefead395958d590e`)
     .then((movieDetails) => {
@@ -54,8 +62,8 @@ router.get("/peliculas/:id", (req, res, next) => {
         .then(credits => {
           credits = credits.data
           const limCredits = credits.cast.slice(0, 6)
-          console.log(credits.cast)
-          res.render("../views/media/film-details", { movieDetails, limCredits })
+
+          res.render("../views/media/film-details", { movieDetails, limCredits, reviews })
         })
     })
 })
@@ -76,6 +84,29 @@ router.get("/actor/:id", (req, res, next) => {
     })
 })
 
+router.get("/peliculas/:id/create-review", (req, res, next) => {
+  const movieId = req.params
+  console.log(req.params)
+
+  const currentUser = req.session.currentUser
+
+
+  res.render("../views/media/create-review-form", { movieId, currentUser })
+
+
+
+})
+
+router.post("/peliculas/:id/create-review", (req, res, next) => {
+  let { rating, text, userId, movieId } = req.body
+
+  console.log(req.body)
+  console.log(rating, text, userId, movieId)
+  Review
+    .create({ rating, text, userId, movieId })
+    .then(() => console.log("creation is a success"))
+    .catch(err => console.log(err))
+})
 
 
 
