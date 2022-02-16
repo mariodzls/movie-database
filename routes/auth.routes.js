@@ -4,6 +4,7 @@ const fileUploader = require('../config/cloudinary.config')
 const User = require('./../models/User.model')
 const saltRounds = 10
 
+
 const router = require("express").Router()
 
 router.get("/registro", (req, res, next) =>

@@ -2,6 +2,7 @@ const { Router } = require("express");
 const { default: axios } = require("axios")
 const router = require("express").Router();
 const Review = require('./../models/Review.model')
+const { isLoggedIn } = require('../middleware/route-guard.js');
 
 /* GET home page */
 router.get("/", (req, res, next) => {
@@ -20,7 +21,7 @@ router.post("/", (req, res, next) => {
     .then(movie => {
 
       const movies = movie.data
-      
+
 
 
       res.render("../views/media/films", movies.results)
@@ -84,7 +85,7 @@ router.get("/actor/:id", (req, res, next) => {
     })
 })
 
-router.get("/peliculas/:id/create-review", (req, res, next) => {
+router.get("/peliculas/:id/create-review", isLoggedIn, (req, res, next) => {
   const movieId = req.params
   console.log(req.params)
 

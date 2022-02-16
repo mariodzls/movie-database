@@ -1,6 +1,6 @@
 const isLoggedIn = (req, res, next) => {
     if (!req.session || !req.session.currentUser) {
-        res.redirect('/')
+        res.redirect('/iniciar-sesion')
         return
     }
     next();
