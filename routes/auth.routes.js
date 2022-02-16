@@ -1,6 +1,6 @@
 const res = require("express/lib/response")
 const bcryptjs = require('bcryptjs')
-
+const fileUploader = require('../config/cloudinary.config')
 const User = require('./../models/User.model')
 const saltRounds = 10
 
@@ -10,15 +10,15 @@ router.get("/registro", (req, res, next) =>
     res.render("auth/sign-up")
 )
 
-router.post("/registro", (req, res, next) => {
-    const { username, email, password, description } = req.body
+router.post("/registro", fileUploader.single('imageFile'), (req, res, next) => {
+    const { username, email, password, description, profileImg } = req.body
 
     bcryptjs
         .genSalt(saltRounds)
         .then(salt => bcryptjs.hash(password, salt))
         .then(hashedPassword => {
             console.log('El hash a crear en la BBDD es', hashedPassword)
-            return User.create({ username, email, password: hashedPassword, description })
+            return User.create({ username, email, password: hashedPassword, description, profileImg: req.file?.path })
         })
         .then(createdUser => res.redirect('/'))
         .catch(error => next(error))

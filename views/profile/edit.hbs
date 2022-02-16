@@ -1,6 +1,7 @@
+<div class="container">
 <h1>Editar el perfil de {{username}}</h1>
 
-<form action="/perfil/{{_id}}/editar" method="POST">
+<form action="/perfil/editar/{{_id}}" method="POST" enctype="multipart/form-data">
 
     <label>
         Email
@@ -16,8 +17,14 @@
 
     <br><br>
 
+    <label> Imagen
+      <input type="file" name="imageFile"/>
+    </label>
+
+ <br><br>
 
     <input type="submit" value="Guardar edición">
 </form>
 
 <a href="/peliculas">Volver al perfil</a>
+</div>
