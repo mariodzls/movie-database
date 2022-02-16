@@ -6,6 +6,7 @@ const { isLoggedIn } = require('../middleware/route-guard.js');
 
 
 const ApiHandler = require("../api-handlers/tombd-handler");
+const User = require("../models/User.model");
 const apiHandler = new ApiHandler()
 
 router.get("/", (req, res, next) => res.render("index"))
@@ -37,8 +38,6 @@ router.get("/peliculas/:id", (req, res, next) => {
 
 
 
-  const favoriteMovie = document.querySelector("#flexSwitchCheckDefault")
-  console.log(favoriteMovie)
 
 
 
@@ -66,6 +65,25 @@ router.get("/peliculas/:id", (req, res, next) => {
           res.render("../views/media/film-details", { movieDetails, limCredits, reviews })
         })
     })
+})
+
+
+
+router.post("/peliculas/:id", (req, res, next) => {
+  const { addToFavorites } = req.body
+  console.log(addToFavorites)
+
+  console.log(req.session.currentUser._id)
+
+  User
+    .findByIdAndUpdate(req.session.currentUser._id, { $push: { "favoriteMoviesIds": req.params.id } })
+
+    .then(x => console.log(x))
+
+
+
+  res.redirect(`/peliculas/${req.params.id}`)
+
 })
 
 
