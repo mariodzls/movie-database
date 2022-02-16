@@ -36,6 +36,7 @@ router.get("/peliculas", (req, res, next) => {
 
 router.get("/peliculas/:id", (req, res, next) => {
 
+<<<<<<< HEAD
 
 
 
@@ -43,14 +44,13 @@ router.get("/peliculas/:id", (req, res, next) => {
 
 
 
+=======
+>>>>>>> f668428d28348efd3e6cab5396aa2ccb55529072
   let reviews = {}
 
   Review
     .find({ movieId: `${req.params.id}` })
     .then(reviewsFound => reviews = reviewsFound)
-
-
-
 
   axios
     .get(`https://api.themoviedb.org/3/movie/${req.params.id}?api_key=1bcaa0ba2b7c234cefead395958d590e`)

@@ -1,4 +1,4 @@
-<div class="container">
+<div class="container details-films">
 
     <div class="row justify-content-around">
 
@@ -44,14 +44,16 @@
 
                 {{#each limCredits}}
 
-                <div class="col-6">
+                <div class="col-4">
                     <a href="/actor/{{id}}">
                         <img src="https://www.themoviedb.org/t/p/original{{profile_path}}" alt="" class="actor-image">
                         <div>{{name}} </div>
                     </a>
                 </div>
+                <br><br>
                 {{/each}}
-                Reviews:
+                <br>
+                <h5>Reviews:</h5>
                 {{#if reviews}}
                 <div class="row">
                     {{#each reviews}}

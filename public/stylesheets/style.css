@@ -1,5 +1,5 @@
 body {
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  font: 14px "Titillium Web", Helvetica, Arial, sans-serif;
 }
 
 a {
@@ -62,8 +62,9 @@ img {
 }
 
 .details {
-  height: 600px;
+  height: 400px;
   object-fit: cover;
+
 }
 
 .photo-profile {
@@ -132,6 +133,14 @@ img {
   margin-bottom: 20px;
 }
 .films {
-  margin-top: 60px;
+  margin-top: 0px;
   margin-bottom: 100px;
+}
+
+.foot {
+  font-size: 12px;
+}
+
+.details-films {
+  padding: 40px 0 80px;
 }

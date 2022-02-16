@@ -5,12 +5,12 @@
     <div class="form-group">
         <label for="Stars">Puntúa la película:</label>
         <select class="form-select" aria-label="Default select example">
-<option Nada></option>    
-  <option value="1">1</option>
-  <option value="2">2</option>
-  <option value="3">3</option>
-  <option value="4">4</option>
-  <option value="5">5</option>
+<option Nada>Puntúa</option>    
+  <option value="1">⭐</option>
+  <option value="2">⭐⭐</option>
+  <option value="3">⭐⭐⭐</option>
+  <option value="4">⭐⭐⭐⭐</option>
+  <option value="5">⭐⭐⭐⭐⭐</option>
 
 </select>
      
@@ -21,10 +21,9 @@
         <textarea class="form-control" id="reviewArea" rows="3" name="text"></textarea>
     </div>
 <br>
-    <input type="text" value="{{movieId.id}}" name="movieId">
+    <input type="hidden" value="{{movieId.id}}" name="movieId">
     <br>
-    <input type="text" value="{{currentUser._id}}" name="userId">
-<br><br>
+    <input type="hidden" value="{{currentUser._id}}" name="userId">
     <button type="submit" class="btn btn-primary">Enviar review</button>
 </form>
 </div>

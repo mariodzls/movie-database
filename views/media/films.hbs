@@ -1,12 +1,13 @@
 <div class="container films">
 
-    <h1>Movies</h1>
+    <h1>Películas más populares</h1>
+    <br>
     <div class="row">
         {{#each this}}
 
         {{#if poster_path}}
 
-        <div class="col-md-4">
+        <div class="col-md-3">
             <div class="card">
                 <a href="/peliculas/{{id}}">
                     <img class="card-img-top" src="https://www.themoviedb.org/t/p/original{{poster_path}}" alt="" />
