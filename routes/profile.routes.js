@@ -7,9 +7,9 @@ const { isAdmin, isUser, isMod } = require("../utils")
 const { default: axios } = require("axios")
 
 const ApiHandler = require("../api-handlers/tombd-handler");
+const Review = require("../models/Review.model")
 
 const apiHandler = new ApiHandler()
-// router.get("/perfil", (req, res, next) => {
 
 
 
@@ -49,6 +49,7 @@ router.post("/perfil/:user_id/borrar", isLoggedIn, checkRole("ADMIN"), (req, res
         .catch(error => next(error))
 })
 
+<<<<<<< HEAD
 router.get('/perfil/:id', isLoggedIn, (req, res, next) => {
 
     const favoriteMovies = req.session.currentUser.favoriteMoviesIds
@@ -65,6 +66,12 @@ router.get('/perfil/:id', isLoggedIn, (req, res, next) => {
 
 
 
+=======
+
+router.get('/perfil', isLoggedIn, (req, res, next) => {
+
+    const favoriteMovies = req.session.currentUser.favoriteMoviesIds
+>>>>>>> f71462d008701b9e6e1e8c9fd9f27496d3f93ae5
     let movieArr = []
 
     apiHandler.getArrofMovies(favoriteMovies)
@@ -81,21 +88,17 @@ router.get('/perfil/:id', isLoggedIn, (req, res, next) => {
             isAdmin: isAdmin(req.session.currentUser),
             isMod: isMod(req.session.currentUser),
         }))
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 })
+
+
+router.post('/perfil/:review_id/borrar', isLoggedIn, (req, res, next) => {
+    const { review_id } = req.params
+
+    Review
+        .findByIdAndDelete(review_id)
+        .then(() => { res.redirect("/perfil") })
+        .catch(error => next(error))
+})
+
 
 module.exports = router
