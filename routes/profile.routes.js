@@ -1,8 +1,14 @@
 const router = require("express").Router()
 const User = require('./../models/User.model')
+const Movie = require("./../models/Movie.model")
 const fileUploader = require('../config/cloudinary.config')
 const { isLoggedIn, checkRole, check } = require("../middleware/route-guard")
 const { isAdmin, isUser, isMod } = require("../utils")
+const { default: axios } = require("axios")
+
+const ApiHandler = require("../api-handlers/tombd-handler");
+
+const apiHandler = new ApiHandler()
 // router.get("/perfil", (req, res, next) => {
 
 //     res.render("../views/profile/profile", { user: req.session.currentUser })
@@ -47,12 +53,39 @@ router.post("/perfil/:user_id/borrar", isLoggedIn, checkRole("ADMIN"), (req, res
 
 router.get('/perfil', isLoggedIn, (req, res, next) => {
 
-    res.render('profile/profile', {
-      user: req.session.currentUser, 
-      isUser: isUser(req.session.currentUser),
-      isAdmin: isAdmin(req.session.currentUser),
-      isMod: isMod(req.session.currentUser),
-    })
-  })
+    const favoriteMovies = req.session.currentUser.favoriteMoviesIds
+
+
+    let movieArr = []
+
+    apiHandler.getArrofMovies(favoriteMovies)
+        .then((response) => {
+            response.forEach((x) => {
+                movieArr.push(x.data)
+            })
+        })
+        .then(() => res.render('profile/profile', {
+            movieArr,
+            user: req.session.currentUser,
+            isUser: isUser(req.session.currentUser),
+            isAdmin: isAdmin(req.session.currentUser),
+            isMod: isMod(req.session.currentUser),
+        }))
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+})
 
 module.exports = router

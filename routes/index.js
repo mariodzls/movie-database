@@ -35,17 +35,6 @@ router.get("/peliculas", (req, res, next) => {
 
 
 router.get("/peliculas/:id", (req, res, next) => {
-
-<<<<<<< HEAD
-
-
-
-
-
-
-
-=======
->>>>>>> f668428d28348efd3e6cab5396aa2ccb55529072
   let reviews = {}
 
   Review
