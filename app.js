@@ -22,7 +22,6 @@ require("./config/sessions")(app);
 // default value for title local
 
 app.locals.appTitle = `Movie-Database`;
-
 // 👇 Start handling routes here
 const index = require("./routes/index");
 app.use("/", index);

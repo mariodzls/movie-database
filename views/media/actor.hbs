@@ -1,14 +1,25 @@
 <div class="container">
+    <div class="row">
+    <div class="col-3">
+        <div class="barra-foto-actor">
+        <h1>{{actor.name}}</h1>
 <img src="https://www.themoviedb.org/t/p/original{{actor.profile_path}}" alt="" class="actor">
+</div>
+</div>
+<div class="col-9">
+<p class="bio-actor">{{actor.biography}}</p>
 
-<h1>{{actor.name}}</h1>
-{{actor.biography}}
-<ul>
+    <h3>Filmography</h3>
+    <ul class="filmography">
     {{#each credits}}
-
-    <li>{{title}} {{release_date}}</li>
+    
+    <li>{{title}} </li>
 
 
     {{/each}}
 </ul>
 </div>
+</div>
+</div>
+
+{{!-- {{release_date}} --}}

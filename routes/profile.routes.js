@@ -4,15 +4,16 @@ const Movie = require("./../models/Movie.model")
 const fileUploader = require('../config/cloudinary.config')
 const { isLoggedIn, checkRole, check } = require("../middleware/route-guard")
 const { isAdmin, isUser, isMod } = require("../utils")
+<<<<<<< HEAD
 const { default: axios } = require("axios")
 
 const ApiHandler = require("../api-handlers/tombd-handler");
 
 const apiHandler = new ApiHandler()
 // router.get("/perfil", (req, res, next) => {
+=======
+>>>>>>> c8b36a3f8c121f0d3efca4ea9c26f6fd1abee485
 
-//     res.render("../views/profile/profile", { user: req.session.currentUser })
-// })
 
 
 router.get('/perfil/editar/:user_id', isLoggedIn, check, (req, res, next) => {

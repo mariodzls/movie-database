@@ -3,7 +3,7 @@ body {
 }
 
 a {
-  color: #00b7ff;
+  color: #f9c700;
 }
 
 h1 {
@@ -17,7 +17,7 @@ h2 {
 
 .barra {
   padding: 20px;
-  background: linear-gradient(0deg, rgba(230,160,195,1) 31%, rgba(126,57,57,1) 100%);
+  background: linear-gradient(0deg, rgba(101,184,237,1) 4%, rgba(68,124,160,1) 55%, rgba(76,86,92,1) 100%);
   position: fixed;
   width: 100%;
   z-index: 100;
@@ -27,7 +27,7 @@ h2 {
 }
 
 .logo {
-  width: 80px;
+  width: 100px;
 }
 
 .nav-link {
@@ -39,13 +39,12 @@ h2 {
 }
 
 footer{
-  background: linear-gradient(0deg, rgba(126,57,57,1) 4%, rgba(230,160,195,1) 100%);
-  color: black;
+  background: linear-gradient(0deg, rgba(76,86,92,1) 4%, rgba(68,124,160,1) 20%,rgba(101,184,237,1)  100%);
   font-weight: bold;
   position: fixed;
   bottom: 0;
   width: 100%;
-  padding: 15px 30px;
+  padding: 5px 30px;
   margin-top: 40px;
 }
 
@@ -64,22 +63,34 @@ img {
 .details {
   height: 400px;
   object-fit: cover;
-
+  border-radius: 20%;
+  margin-bottom: 20px;
 }
 
 .photo-profile {
-  height: 80px;
+  height: 160px;
+  border-radius: 20%;
+  margin: 20px 0;
 }
 
 .actor-image {
   height: 120px;
   object-fit: cover;
+  border-radius: 0.50rem;
+  margin: 25px 0 10px;
 }
 
 .actor{
   height: 250px;
   object-fit: cover;
-  padding-top: 20px;
+  margin-top: 20px;
+  border-radius: 20%;
+}
+
+.name-actor {
+  text-decoration: none;
+  color: black;
+  margin-bottom: 50px;
 }
 
 
@@ -87,20 +98,14 @@ img {
   display: hidden;
 }
 .btn-warning {
-  background-color: #d8a499;
+  background-color: #f9c700;
   border-color: #00b7ff;
 }
 
 .img-fluid {
-  height: 600px;
-  margin-left: 90px;
+  height: 500px;
+  object-fit: contain;
 }
-
-
-
-
-
-
 
 .inicio-sesion {
   padding: 100px;
@@ -123,6 +128,7 @@ img {
   color: black;
   font-style: normal;
   font-weight: bold;
+  text-align: center;
 }
 
 .card a {
@@ -143,4 +149,61 @@ img {
 
 .details-films {
   padding: 40px 0 80px;
+}
+
+.cartones {
+  border-radius: 20%;
+}
+.card {
+  border: 0px;
+  margin: 0;
+}
+
+.title-card {
+  margin-bottom: 20px;
+  font-weight: 600;
+
+}
+
+.boton-fav {
+  margin-bottom: 20px;
+}
+
+.review-title {
+  padding-top: 30px;
+}
+
+.bio-actor {
+  margin-top: 60px;
+  margin-left: 20px;
+}
+
+.filmography {
+  margin-bottom: 80px;
+}
+.barra-foto-actor {
+  position: fixed;
+  width: 100%;
+  z-index: 100;
+}
+
+.boton-registrar {
+  background-color: #f9c700;
+}
+
+.boton-iniciar {
+  background-color: #447cad;
+}
+
+.des-per {
+  margin-top: 70px;
+}
+
+.nav-link {
+  font-weight: 600;
+}
+
+.img-register {
+  height: 600px;
+  margin-left: 100px;
 }
