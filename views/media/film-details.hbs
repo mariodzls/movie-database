@@ -1,21 +1,12 @@
 <div class="container details-films">
-
     <div class="row justify-content-around">
-
-
-
-
-        <div class="col-4">
+        <h3 class="card-title title-card">{{movieDetails.title}}</h3>
+        <div class="col-6">
             <div>
-
                 <img class="details" src=" https://www.themoviedb.org/t/p/original{{movieDetails.poster_path}}"
                     alt="" />
-
-                <h5 class="card-title">{{movieDetails.title}}</h5>
-
-
-
-                <form action="/peliculas/{{movieDetails.id}}" method="POST">
+                <p>Rating: {{vote_average}}</p>
+                <form class="boton-fav" action="/peliculas/{{movieDetails.id}}" method="POST">
                     <button class="btn btn-outline-danger" type="submit">
                         <input type="hidden" value="addToFavorites" name="addToFavorites">
                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
@@ -25,64 +16,46 @@
                         </svg> <span>Añadir a tus pelis favoritas</span>
                     </button>
                 </form>
-
-
-
                 <div>
-                    <a href="/peliculas/{{movieDetails.id}}/create-review">Create review</a>
+                    <a href="/peliculas/{{movieDetails.id}}/create-review"><button type="button"
+                            class="btn btn-primary">Crear review</button></a>
                 </div>
-
-
-                <p>{{movieDetails.overview}}</p>
-                <p>Rating: {{vote_average}}</p>
-
             </div>
         </div>
         <div class="col-6">
-
+            <p>{{movieDetails.overview}}</p>
             <div class="row">
-
                 {{#each limCredits}}
-
                 <div class="col-4">
-                    <a href="/actor/{{id}}">
+                    <a class="name-actor" href="/actor/{{id}}">
                         <img src="https://www.themoviedb.org/t/p/original{{profile_path}}" alt="" class="actor-image">
                         <div>{{name}} </div>
                     </a>
                 </div>
                 <br><br>
                 {{/each}}
-                <br>
-                <h5>Reviews:</h5>
+                <br><br>
+                <h4 class="review-title">Reviews</h4>
                 {{#if reviews}}
                 <div class="row">
                     {{#each reviews}}
-
                     <div class="col-12">
-
-                        By: <h3>{{username}}</h3>
-                        <div>{{text}}</div>
                         <hr>
-
+                        <h5>{{username}}</h5>
+                        <p>{{text}}</p>
+                        {{#if ../isAdmin}}
+                        <form action="/peliculas/{{id}}/borrar" method="POST">
+                            <button class="btn btn-danger">Borrar comentario</button>
+                        </form>
+                        {{/if}}
+                        <hr>
                     </div>
                     {{/each}}
                 </div>
-
-
-
-
                 {{else}}
-                Se el primero en dejar tu review de la película
-
+                <h5>Se el primero en dejar tu review de la película</h5>
                 {{/if}}
-
-
             </div>
-
         </div>
-
-
-
-
     </div>
 </div>

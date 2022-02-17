@@ -2,6 +2,7 @@ const res = require("express/lib/response")
 const bcryptjs = require('bcryptjs')
 const fileUploader = require('../config/cloudinary.config')
 const User = require('./../models/User.model')
+const app = require("../app")
 const saltRounds = 10
 
 const router = require("express").Router()
@@ -47,6 +48,7 @@ router.post("/iniciar-sesion", (req, res, next) => {
                 return
             } else {
                 req.session.currentUser = user
+                req.app.locals.currentUser = user
                 console.log('El objeto de EXPRESS-SESSION', req.session)
                 res.redirect('/perfil')
             }

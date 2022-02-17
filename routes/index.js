@@ -2,11 +2,12 @@ const { Router } = require("express");
 const { default: axios } = require("axios")
 const router = require("express").Router();
 const Review = require('./../models/Review.model')
-const { isLoggedIn } = require('../middleware/route-guard.js');
+const { isLoggedIn, checkRole } = require('../middleware/route-guard.js');
 
 
 const ApiHandler = require("../api-handlers/tombd-handler");
 const User = require("../models/User.model");
+const { isAdmin, isUser, isMod } = require("../utils/index")
 const apiHandler = new ApiHandler()
 
 router.get("/", (req, res, next) => res.render("index"))
@@ -36,16 +37,6 @@ router.get("/peliculas", (req, res, next) => {
 
 router.get("/peliculas/:id", (req, res, next) => {
 
-<<<<<<< HEAD
-
-
-
-
-
-
-
-=======
->>>>>>> f668428d28348efd3e6cab5396aa2ccb55529072
   let reviews = {}
 
   Review
@@ -61,8 +52,7 @@ router.get("/peliculas/:id", (req, res, next) => {
         .then(credits => {
           credits = credits.data
           const limCredits = credits.cast.slice(0, 6)
-
-          res.render("../views/media/film-details", { movieDetails, limCredits, reviews })
+          res.render("media/film-details", { movieDetails, limCredits, reviews, isAdmin: isAdmin(req.session.currentUser) })
         })
     })
 })
@@ -126,5 +116,13 @@ router.post("/peliculas/:id/create-review", (req, res, next) => {
     .catch(err => console.log(err))
 })
 
+router.post("/peliculas/:reviews_id/borrar", isLoggedIn, checkRole("ADMIN"), (req,res,next) => {
+  let {reviews_id} = req.params
+
+  Review
+        .findByIdAndDelete(reviews_id)
+        .then(() => { res.redirect("/peliculas") })
+        .catch(error => next(error))
+})
 
 module.exports = router;

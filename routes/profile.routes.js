@@ -3,10 +3,7 @@ const User = require('./../models/User.model')
 const fileUploader = require('../config/cloudinary.config')
 const { isLoggedIn, checkRole, check } = require("../middleware/route-guard")
 const { isAdmin, isUser, isMod } = require("../utils")
-// router.get("/perfil", (req, res, next) => {
 
-//     res.render("../views/profile/profile", { user: req.session.currentUser })
-// })
 
 
 router.get('/perfil/editar/:user_id', isLoggedIn, check, (req, res, next) => {
