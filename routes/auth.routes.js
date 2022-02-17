@@ -49,8 +49,8 @@ router.post("/iniciar-sesion", (req, res, next) => {
             } else {
                 req.session.currentUser = user
                 req.app.locals.currentUser = user
-                console.log('El objeto de EXPRESS-SESSION', req.session)
-                res.redirect('/perfil')
+
+                res.redirect(`/perfil/${req.session.currentUser.id}`)
             }
         })
 })

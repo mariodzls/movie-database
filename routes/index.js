@@ -65,7 +65,7 @@ router.post("/peliculas/:id", (req, res, next) => {
   console.log(req.session.currentUser._id)
 
   User
-    .findByIdAndUpdate(req.session.currentUser._id, { $push: { "favoriteMoviesIds": req.params.id } })
+    .findByIdAndUpdate(req.session.currentUser._id, { $push: { "favoriteMoviesIds": req.params.id }, }, { new: true })
 
     .then(x => console.log(x))
 

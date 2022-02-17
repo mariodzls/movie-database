@@ -13,18 +13,18 @@ const apiHandler = new ApiHandler()
 
 
 
-router.get('/perfil/editar/:user_id', isLoggedIn, check, (req, res, next) => {
+router.get('/perfil/editar/:user_id', isLoggedIn, (req, res, next) => {
 
     const { user_id } = req.params
 
     User
         .findById(user_id)
-        .then(user => res.render("profile/edit", user))
+        .then(user => res.render("../views/profile/edit", user))
         .catch(err => next(err))
 })
 
 
-router.post("/perfil/editar/:user_id", fileUploader.single('imageFile'), isLoggedIn, check, (req, res, next) => {
+router.post("/perfil/editar/:user_id", fileUploader.single('imageFile'), isLoggedIn, (req, res, next) => {
 
     const { user_id } = req.params
     const { email, description } = req.body
@@ -49,9 +49,20 @@ router.post("/perfil/:user_id/borrar", isLoggedIn, checkRole("ADMIN"), (req, res
         .catch(error => next(error))
 })
 
-router.get('/perfil', isLoggedIn, (req, res, next) => {
+router.get('/perfil/:id', isLoggedIn, (req, res, next) => {
 
     const favoriteMovies = req.session.currentUser.favoriteMoviesIds
+
+    User
+        .findById(req.params.id)
+        .then((x) => {
+            profileUser = x
+            isCurrentUser = req.session.currentUser.username === profileUser.username && isAdmin(req.session.currentUser) === false
+
+        })
+
+
+
 
 
     let movieArr = []
@@ -64,7 +75,8 @@ router.get('/perfil', isLoggedIn, (req, res, next) => {
         })
         .then(() => res.render('profile/profile', {
             movieArr,
-            user: req.session.currentUser,
+            profileUser,
+            isCurrentUser,
             isUser: isUser(req.session.currentUser),
             isAdmin: isAdmin(req.session.currentUser),
             isMod: isMod(req.session.currentUser),
