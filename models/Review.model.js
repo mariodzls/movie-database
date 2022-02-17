@@ -1,7 +1,7 @@
 const { Schema, model } = require("mongoose");
 
 const reviewSchema = new Schema({
-    text: { type: String },
+    text: { type: String, required: true },
     movieId: String,
     userId: String,
     username: String,

@@ -10,7 +10,10 @@ const User = require("../models/User.model");
 const { isAdmin, isUser, isMod } = require("../utils/index")
 const apiHandler = new ApiHandler()
 
+
+
 router.get("/", (req, res, next) => res.render("index"))
+
 
 router.post("/", (req, res, next) => {
 
@@ -36,6 +39,7 @@ router.get("/peliculas", (req, res, next) => {
 
 
 router.get("/peliculas/:id", (req, res, next) => {
+  
   let reviews = {}
 
   Review
@@ -59,19 +63,13 @@ router.get("/peliculas/:id", (req, res, next) => {
 
 
 router.post("/peliculas/:id", (req, res, next) => {
+ 
   const { addToFavorites } = req.body
-  console.log(addToFavorites)
-
-  console.log(req.session.currentUser._id)
 
   User
-    .findByIdAndUpdate(req.session.currentUser._id, { $push: { "favoriteMoviesIds": req.params.id } })
-
+    .findByIdAndUpdate(req.session.currentUser._id, { $push: { "favoriteMoviesIds": req.params.id  }})
     .then(x => console.log(x))
-
-
-
-  res.redirect(`/peliculas/${req.params.id}`)
+      res.redirect(`/peliculas/${req.params.id}`)
 
 })
 
@@ -107,13 +105,13 @@ router.post("/peliculas/:id/create-review", (req, res, next) => {
 
   let { rating, text, userId, movieId, } = req.body
   const username = req.session.currentUser.username
-  console.log(username)
 
   Review
     .create({ rating, text, userId, movieId, username })
     .then(() => res.redirect(`/peliculas/${req.params.id}`))
     .catch(err => console.log(err))
 })
+
 
 router.post("/peliculas/:reviews_id/borrar", isLoggedIn, checkRole("ADMIN"), (req, res, next) => {
   let { reviews_id } = req.params
