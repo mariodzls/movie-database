@@ -5,7 +5,7 @@
             <div>
                 <img class="details" src=" https://www.themoviedb.org/t/p/original{{movieDetails.poster_path}}"
                     alt="" />
-                <p>Rating: {{vote_average}}</p>
+                <h5>Rating IMDB: {{movieDetails.vote_average}}</h5>
                 <form class="boton-fav" action="/peliculas/{{movieDetails.id}}" method="POST">
                     <button class="btn btn-outline-danger" type="submit">
                         <input type="hidden" value="addToFavorites" name="addToFavorites">

@@ -49,7 +49,10 @@ router.post("/perfil/:user_id/borrar", isLoggedIn, checkRole("ADMIN"), (req, res
         .catch(error => next(error))
 })
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> 9f5c8a367dcef8874dc08c3740487c667eadd9a3
 router.get('/perfil/:id', isLoggedIn, (req, res, next) => {
 
     let favoriteMovies = []
@@ -63,7 +66,6 @@ router.get('/perfil/:id', isLoggedIn, (req, res, next) => {
             console.log(favoriteMovies)
             profileUser = x
             isCurrentUser = req.session.currentUser.username === profileUser.username && isAdmin(req.session.currentUser) === false
-
         })
         .then(() => {
             return apiHandler.getArrofMovies(favoriteMovies)
@@ -75,6 +77,7 @@ router.get('/perfil/:id', isLoggedIn, (req, res, next) => {
 
                 })
 
+<<<<<<< HEAD
 
         })
         .then(() => {
@@ -86,6 +89,14 @@ router.get('/perfil/:id', isLoggedIn, (req, res, next) => {
                 isUser: isUser(req.session.currentUser),
                 isAdmin: isAdmin(req.session.currentUser),
                 isMod: isMod(req.session.currentUser),
+=======
+    let movieArr = []
+
+    apiHandler.getArrofMovies(favoriteMovies)
+        .then((response) => {
+            response.forEach((x) => {
+                movieArr.push(x.data)
+>>>>>>> 9f5c8a367dcef8874dc08c3740487c667eadd9a3
             })
         })
 })
