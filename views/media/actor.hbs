@@ -1,25 +1,39 @@
 <div class="container">
     <div class="row">
-    <div class="col-3">
-        <div class="barra-foto-actor">
-        <h1>{{actor.name}}</h1>
-<img src="https://www.themoviedb.org/t/p/original{{actor.profile_path}}" alt="" class="actor">
-</div>
-</div>
-<div class="col-9">
-<p class="bio-actor">{{actor.biography}}</p>
+        <div class="col-3">
+            <div class="barra-foto-actor">
+                <h1>{{actor.name}}</h1>
+                <img src="https://www.themoviedb.org/t/p/original{{actor.profile_path}}" alt="" class="actor">
+            </div>
+        </div>
+        <div class="col-9">
+            <p class="bio-actor">{{actor.biography}}</p>
+<br>
+            <h3>Filmography</h3>
+            <br><br>
+            
+                <div class="row">
+                {{#each credits}}
 
-    <h3>Filmography</h3>
-    <ul class="filmography">
-    {{#each credits}}
-    
-    <li>{{title}} </li>
+                {{!-- <li>{{title}}</li> --}}
+                
+                <div class="col-2">
+                    <div class="card">
+                        <a href="/peliculas/{{id}}">
+                            <img class="card-img-top cartones"
+                                src="https://www.themoviedb.org/t/p/original{{poster_path}}" alt="poster películas" />
+                                <br><br>
+                                <h5 class="title-film-actor">{{title}}</h5>
+                            <br><br>
+                        </a>
+                    </div>
+                </div>
+                
 
-
-    {{/each}}
-</ul>
-</div>
-</div>
+                {{/each}}
+                </div>
+        </div>
+    </div>
 </div>
 
 {{!-- {{release_date}} --}}

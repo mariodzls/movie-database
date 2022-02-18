@@ -11,18 +11,18 @@
                     <button class="btn btn-danger">Borrar perfil</button>
                 </form>
             </div>
-        
-        {{/if}}
 
-        {{#if isCurrentUser}}
-        <div class="flex botones-perfil">
-            <a href='/perfil/editar/{{profileUser._id}}' class="btn btn-warning">Editar</a>
-            <form action="/perfil/{{profileUser._id}}/borrar" method="POST">
-                <button class="btn btn-danger">Borrar perfil</button>
-            </form>
+            {{/if}}
+
+            {{#if isCurrentUser}}
+            <div class="flex botones-perfil">
+                <a href='/perfil/editar/{{profileUser._id}}' class="btn btn-warning">Editar</a>
+                <form action="/perfil/{{profileUser._id}}/borrar" method="POST">
+                    <button class="btn btn-danger">Borrar perfil</button>
+                </form>
+            </div>
+            {{/if}}
         </div>
-        </div>
-        {{/if}}
         <div class="col-8 des-per">
             <h3>Descripción</h3>
             <p>{{profileUser.description}}</p>
@@ -34,10 +34,11 @@
                     <div class="card">
                         <a href="/peliculas/{{id}}">
                             <img class="card-img-top cartones"
-                                src="https://www.themoviedb.org/t/p/original{{poster_path}}" alt="" />
-                            
-                            <a href='/perfil/{{review._id}}/borrar' class="btn btn-danger">Quitar película de mis
-                                favoritos</a>
+                                src="https://www.themoviedb.org/t/p/original{{poster_path}}" alt="poster" />
+                            <form action="/perfil/">
+                                <a href='/perfil/{{id}}/borrar' class="btn btn-danger boton-quitar">Quitar</a>
+                            </form>
+                            <br><br>
                         </a>
                     </div>
                 </div>
@@ -46,3 +47,5 @@
             </div>
         </div>
 
+    </div>
+</div>
