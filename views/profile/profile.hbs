@@ -35,7 +35,7 @@
                         <a href="/peliculas/{{id}}">
                             <img class="card-img-top cartones"
                                 src="https://www.themoviedb.org/t/p/original{{poster_path}}" alt="poster" />
-                            <form action="perfil/{{profileUser._id}}/delete-movie" method="POST">
+                            <form action="/perfil/{{id}}/delete-movie" method="POST">
                                 <input type="hidden" value="{{id}}">
                                 <button type="submit" class="btn btn-danger boton-quitar"> Quitar</button>
                             </form>
@@ -54,6 +54,4 @@
     </div>
 
 </div>
-<<<<<<< HEAD </div>
-    =======
-    >>>>>>> d765a984812a1b54b1f0c6b966b17d6dbe7c1485
+</div>
