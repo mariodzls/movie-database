@@ -39,7 +39,7 @@ router.get("/peliculas", (req, res, next) => {
 
 
 router.get("/peliculas/:id", (req, res, next) => {
-  
+
   let reviews = {}
 
   Review
@@ -63,18 +63,13 @@ router.get("/peliculas/:id", (req, res, next) => {
 
 
 router.post("/peliculas/:id", (req, res, next) => {
- 
-  const { addToFavorites } = req.body
+
+
 
   User
-<<<<<<< HEAD
-    .findByIdAndUpdate(req.session.currentUser._id, { $push: { "favoriteMoviesIds": req.params.id }, }, { new: true })
-
-=======
-    .findByIdAndUpdate(req.session.currentUser._id, { $push: { "favoriteMoviesIds": req.params.id  }})
->>>>>>> f71462d008701b9e6e1e8c9fd9f27496d3f93ae5
+    .findByIdAndUpdate(req.session.currentUser._id, { $push: { "favoriteMoviesIds": req.params.id } }, { new: true })
     .then(x => console.log(x))
-      res.redirect(`/peliculas/${req.params.id}`)
+  res.redirect(`/peliculas/${req.params.id}`)
 
 })
 

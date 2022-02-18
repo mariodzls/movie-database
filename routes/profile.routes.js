@@ -49,45 +49,45 @@ router.post("/perfil/:user_id/borrar", isLoggedIn, checkRole("ADMIN"), (req, res
         .catch(error => next(error))
 })
 
-<<<<<<< HEAD
+
 router.get('/perfil/:id', isLoggedIn, (req, res, next) => {
 
-    const favoriteMovies = req.session.currentUser.favoriteMoviesIds
+    let favoriteMovies = []
 
+
+    let movieArr = []
     User
         .findById(req.params.id)
         .then((x) => {
+            favoriteMovies = x.favoriteMoviesIds
+            console.log(favoriteMovies)
             profileUser = x
             isCurrentUser = req.session.currentUser.username === profileUser.username && isAdmin(req.session.currentUser) === false
 
         })
+        .then(() => {
+            return apiHandler.getArrofMovies(favoriteMovies)
+                .then((response) => {
+
+                    response.forEach((x) => {
+                        movieArr.push(x.data)
+                    })
+
+                })
 
 
+        })
+        .then(() => {
 
-
-
-=======
-
-router.get('/perfil', isLoggedIn, (req, res, next) => {
-
-    const favoriteMovies = req.session.currentUser.favoriteMoviesIds
->>>>>>> f71462d008701b9e6e1e8c9fd9f27496d3f93ae5
-    let movieArr = []
-
-    apiHandler.getArrofMovies(favoriteMovies)
-        .then((response) => {
-            response.forEach((x) => {
-                movieArr.push(x.data)
+            res.render('profile/profile', {
+                movieArr: movieArr,
+                profileUser,
+                isCurrentUser,
+                isUser: isUser(req.session.currentUser),
+                isAdmin: isAdmin(req.session.currentUser),
+                isMod: isMod(req.session.currentUser),
             })
         })
-        .then(() => res.render('profile/profile', {
-            movieArr,
-            profileUser,
-            isCurrentUser,
-            isUser: isUser(req.session.currentUser),
-            isAdmin: isAdmin(req.session.currentUser),
-            isMod: isMod(req.session.currentUser),
-        }))
 })
 
 
