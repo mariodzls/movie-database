@@ -67,12 +67,8 @@ router.post("/peliculas/:id", (req, res, next) => {
   const { addToFavorites } = req.body
 
   User
-<<<<<<< HEAD
     .findByIdAndUpdate(req.session.currentUser._id, { $push: { "favoriteMoviesIds": req.params.id }, }, { new: true })
 
-=======
-    .findByIdAndUpdate(req.session.currentUser._id, { $push: { "favoriteMoviesIds": req.params.id  }})
->>>>>>> f71462d008701b9e6e1e8c9fd9f27496d3f93ae5
     .then(x => console.log(x))
       res.redirect(`/peliculas/${req.params.id}`)
 

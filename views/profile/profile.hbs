@@ -11,7 +11,7 @@
                     <button class="btn btn-danger">Borrar perfil</button>
                 </form>
             </div>
-        </div>
+        
         {{/if}}
 
         {{#if isCurrentUser}}
@@ -20,23 +20,21 @@
             <form action="/perfil/{{profileUser._id}}/borrar" method="POST">
                 <button class="btn btn-danger">Borrar perfil</button>
             </form>
-
+        </div>
         </div>
         {{/if}}
         <div class="col-8 des-per">
             <h3>Descripción</h3>
-            <p>{{user.description}}</p>
+            <p>{{profileUser.description}}</p>
             <h3>Películas favoritas</h3>
             <div class="row">
                 {{#each movieArr}}
-                <div class="col-4">
+                <div class="col-2">
                     <div class="card">
                         <a href="/peliculas/{{id}}">
                             <img class="card-img-top cartones"
                                 src="https://www.themoviedb.org/t/p/original{{poster_path}}" alt="" />
-                            <div class="card-body">
-                                <h5 class="card-title titulo-carta">{{title}}</h5>
-                            </div>
+                            
                             <a href='/perfil/{{review._id}}/borrar' class="btn btn-danger">Quitar película de mis
                                 favoritos</a>
                         </a>
@@ -46,10 +44,3 @@
             </div>
         </div>
 
-
-        <div class="col-8 des-per">
-            <h3>Descripción</h3>
-            <p>{{profileUser.description}}</p>
-        </div>
-    </div>
-</div>

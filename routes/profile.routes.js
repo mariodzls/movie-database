@@ -49,7 +49,6 @@ router.post("/perfil/:user_id/borrar", isLoggedIn, checkRole("ADMIN"), (req, res
         .catch(error => next(error))
 })
 
-<<<<<<< HEAD
 router.get('/perfil/:id', isLoggedIn, (req, res, next) => {
 
     const favoriteMovies = req.session.currentUser.favoriteMoviesIds
@@ -59,19 +58,8 @@ router.get('/perfil/:id', isLoggedIn, (req, res, next) => {
         .then((x) => {
             profileUser = x
             isCurrentUser = req.session.currentUser.username === profileUser.username && isAdmin(req.session.currentUser) === false
-
         })
 
-
-
-
-
-=======
-
-router.get('/perfil', isLoggedIn, (req, res, next) => {
-
-    const favoriteMovies = req.session.currentUser.favoriteMoviesIds
->>>>>>> f71462d008701b9e6e1e8c9fd9f27496d3f93ae5
     let movieArr = []
 
     apiHandler.getArrofMovies(favoriteMovies)
