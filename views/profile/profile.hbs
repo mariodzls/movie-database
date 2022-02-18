@@ -11,16 +11,17 @@
                     <button class="btn btn-danger">Borrar perfil</button>
                 </form>
             </div>
-        
-        {{/if}}
 
-        {{#if isCurrentUser}}
-        <div class="flex botones-perfil">
-            <a href='/perfil/editar/{{profileUser._id}}' class="btn btn-warning">Editar</a>
-            <form action="/perfil/{{profileUser._id}}/borrar" method="POST">
-                <button class="btn btn-danger">Borrar perfil</button>
-            </form>
-        </div>
+            {{/if}}
+
+            {{#if isCurrentUser}}
+            <div class="flex botones-perfil">
+                <a href='/perfil/editar/{{profileUser._id}}' class="btn btn-warning">Editar</a>
+                <form action="/perfil/{{profileUser._id}}/borrar" method="POST">
+                    <input type="hidden" value="{{profileUser._id}}" name="value">
+                    <button class="btn btn-danger" type="submit">Borrar perfil</button>
+                </form>
+            </div>
         </div>
         {{/if}}
         <div class="col-8 des-per">
@@ -35,14 +36,17 @@
                         <a href="/peliculas/{{id}}">
                             <img class="card-img-top cartones"
                                 src="https://www.themoviedb.org/t/p/original{{poster_path}}" alt="" />
-                            
-                            <a href='/perfil/{{review._id}}/borrar' class="btn btn-danger">Quitar película de mis
-                                favoritos</a>
                         </a>
                     </div>
+                    <form action="perfil/{{profileUser._id}}/delete-movie" method="POST">
+                        <input type="hidden" value="{{id}}">
+                        <button type="submit" class="btn btn-danger"> Quitar película de mis
+                            favoritos</button>
+                    </form>
+
+
                 </div>
                 {{/each}}
 
             </div>
         </div>
-

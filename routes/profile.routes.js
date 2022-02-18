@@ -39,20 +39,18 @@ router.post("/perfil/editar/:user_id", fileUploader.single('imageFile'), isLogge
 })
 
 
-router.post("/perfil/:user_id/borrar", isLoggedIn, checkRole("ADMIN"), (req, res, next) => {
+router.post("/perfil/:user/borrar", isLoggedIn, (req, res, next) => {
 
-    const { user_id } = req.params
+
+
+    console.log(req.body)
 
     User
-        .findByIdAndDelete(user_id)
+        .findByIdAndDelete(id)
         .then(() => { res.redirect("/") })
         .catch(error => next(error))
 })
 
-<<<<<<< HEAD
-
-=======
->>>>>>> 9f5c8a367dcef8874dc08c3740487c667eadd9a3
 router.get('/perfil/:id', isLoggedIn, (req, res, next) => {
 
     let favoriteMovies = []
@@ -76,9 +74,6 @@ router.get('/perfil/:id', isLoggedIn, (req, res, next) => {
                     })
 
                 })
-
-<<<<<<< HEAD
-
         })
         .then(() => {
 
@@ -89,14 +84,6 @@ router.get('/perfil/:id', isLoggedIn, (req, res, next) => {
                 isUser: isUser(req.session.currentUser),
                 isAdmin: isAdmin(req.session.currentUser),
                 isMod: isMod(req.session.currentUser),
-=======
-    let movieArr = []
-
-    apiHandler.getArrofMovies(favoriteMovies)
-        .then((response) => {
-            response.forEach((x) => {
-                movieArr.push(x.data)
->>>>>>> 9f5c8a367dcef8874dc08c3740487c667eadd9a3
             })
         })
 })
@@ -109,6 +96,19 @@ router.post('/perfil/:review_id/borrar', isLoggedIn, (req, res, next) => {
         .findByIdAndDelete(review_id)
         .then(() => { res.redirect("/perfil") })
         .catch(error => next(error))
+})
+
+
+
+
+
+router.post('/perfil/:id/delete-movie', (req, res, next) => {
+
+
+    User
+        .findByIdAndUpdate(req.session.currentUser._id, { $pull: { "favoriteMoviesIds": req.params.id } }, { new: true })
+        .then(x => res.redirect(`/perfil/${req.params.id}`))
+
 })
 
 
