@@ -18,12 +18,11 @@
             <div class="flex botones-perfil">
                 <a href='/perfil/editar/{{profileUser._id}}' class="btn btn-warning">Editar</a>
                 <form action="/perfil/{{profileUser._id}}/borrar" method="POST">
-                    <input type="hidden" value="{{profileUser._id}}" name="value">
-                    <button class="btn btn-danger" type="submit">Borrar perfil</button>
+                    <button class="btn btn-danger">Borrar perfil</button>
                 </form>
             </div>
+            {{/if}}
         </div>
-        {{/if}}
         <div class="col-8 des-per">
             <h3>Descripción</h3>
             <p>{{profileUser.description}}</p>
@@ -35,7 +34,11 @@
                     <div class="card">
                         <a href="/peliculas/{{id}}">
                             <img class="card-img-top cartones"
-                                src="https://www.themoviedb.org/t/p/original{{poster_path}}" alt="" />
+                                src="https://www.themoviedb.org/t/p/original{{poster_path}}" alt="poster" />
+                            <form action="/perfil/">
+                                <a href='/perfil/{{id}}/borrar' class="btn btn-danger boton-quitar">Quitar</a>
+                            </form>
+                            <br><br>
                         </a>
                     </div>
                     <form action="perfil/{{profileUser._id}}/delete-movie" method="POST">
@@ -49,4 +52,10 @@
                 {{/each}}
 
             </div>
+            <<<<<<< HEAD </div>
+                =======
         </div>
+
+    </div>
+</div>
+>>>>>>> 2c2348b5585b2220ae75c13223f3816f6a3adc3c

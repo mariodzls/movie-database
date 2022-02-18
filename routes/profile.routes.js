@@ -39,7 +39,7 @@ router.post("/perfil/editar/:user_id", fileUploader.single('imageFile'), isLogge
 })
 
 
-router.post("/perfil/:user/borrar", isLoggedIn, (req, res, next) => {
+router.post("/perfil/:user_id/borrar", isLoggedIn, (req, res, next) => {
 
 
 
@@ -74,6 +74,8 @@ router.get('/perfil/:id', isLoggedIn, (req, res, next) => {
                     })
 
                 })
+
+
         })
         .then(() => {
 

@@ -21,7 +21,7 @@ router.post("/registro", fileUploader.single('imageFile'), (req, res, next) => {
             console.log('El hash a crear en la BBDD es', hashedPassword)
             return User.create({ username, email, password: hashedPassword, description, profileImg: req.file?.path })
         })
-        .then(createdUser => res.redirect('/'))
+        .then(createdUser => res.redirect('/iniciar-sesion'))
         .catch(error => next(error))
 })
 

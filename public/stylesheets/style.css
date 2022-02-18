@@ -205,5 +205,18 @@ img {
 
 .img-register {
   height: 600px;
-  margin-left: 100px;
+  
+}
+
+.boton-quitar {
+  margin: 20px 0;
+}
+
+.title-film-actor {
+  color: black;
+  text-align: center;
+}
+
+.link-inicio {
+  color: black;
 }
