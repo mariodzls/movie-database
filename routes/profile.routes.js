@@ -1,14 +1,13 @@
 const router = require("express").Router()
 const User = require('./../models/User.model')
 const Movie = require("./../models/Movie.model")
+const Review = require("../models/Review.model")
 const fileUploader = require('../config/cloudinary.config')
 const { isLoggedIn, checkRole, check } = require("../middleware/route-guard")
 const { isAdmin, isUser, isMod } = require("../utils")
 const { default: axios } = require("axios")
 
 const ApiHandler = require("../api-handlers/tombd-handler");
-const Review = require("../models/Review.model")
-
 const apiHandler = new ApiHandler()
 
 
@@ -88,6 +87,7 @@ router.get('/perfil/:id', isLoggedIn, (req, res, next) => {
                 isMod: isMod(req.session.currentUser),
             })
         })
+        .catch(e => console.log(e))
 })
 
 
@@ -105,11 +105,12 @@ router.post('/perfil/:review_id/borrar', isLoggedIn, (req, res, next) => {
 
 
 router.post('/perfil/:id/delete-movie', (req, res, next) => {
-
-
+    console.log(req.body)
+    console.log(req.session.currentUser._id)
     User
-        .findByIdAndUpdate(req.session.currentUser._id, { $pull: { "favoriteMoviesIds": req.params.id } }, { new: true })
-        .then(x => res.redirect(`/perfil/${req.params.id}`))
+        .findByIdAndUpdate(req.session.currentUser._id, { $pull: { "favoriteMoviesIds": req.params.id } })
+        .then(() => res.redirect(`/perfil/${req.session.currentUser._id}`))
+        .catch(e => console.log(e))
 
 })
 

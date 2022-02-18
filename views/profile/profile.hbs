@@ -35,27 +35,23 @@
                         <a href="/peliculas/{{id}}">
                             <img class="card-img-top cartones"
                                 src="https://www.themoviedb.org/t/p/original{{poster_path}}" alt="poster" />
-                            <form action="/perfil/">
-                                <a href='/perfil/{{id}}/borrar' class="btn btn-danger boton-quitar">Quitar</a>
+                            <form action="/perfil/{{id}}/delete-movie" method="POST">
+                                <input type="hidden" value="123" name="value">
+                                <button>Borrar</button>
                             </form>
                             <br><br>
                         </a>
                     </div>
-                    <form action="perfil/{{profileUser._id}}/delete-movie" method="POST">
-                        <input type="hidden" value="{{id}}">
-                        <button type="submit" class="btn btn-danger"> Quitar película de mis
-                            favoritos</button>
-                    </form>
+
 
 
                 </div>
                 {{/each}}
 
             </div>
-            <<<<<<< HEAD </div>
-                =======
         </div>
 
     </div>
+
 </div>
->>>>>>> 2c2348b5585b2220ae75c13223f3816f6a3adc3c
+</div>
