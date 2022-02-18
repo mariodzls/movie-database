@@ -49,7 +49,7 @@
             </form>
                   <a class="nav-link active link-inicio" href="/iniciar-sesion">Iniciar sesión</a>
                {{#if currentUser}}
-                  <a class="nav-link active link-inicio" href="/perfil/{{currentUser._id}}">Perfil</a>
+                  <a class="nav-link active link-inicio" href="/perfil/{{currentUser._id}}"> <img src="{{currentUser.profileImg}}" alt="Imagen de usuario" class="photo-profile-nav"></a>
                {{/if}}
          </div>
       </div>

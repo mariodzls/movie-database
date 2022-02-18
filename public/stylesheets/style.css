@@ -220,3 +220,13 @@ img {
 .link-inicio {
   color: black;
 }
+
+.photo-profile-nav {
+  height: 50px;
+  border-radius: 20%;
+
+}
+
+.heart {
+  font-size: 20px;
+}
