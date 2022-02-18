@@ -40,12 +40,10 @@ router.post("/perfil/editar/:user_id", fileUploader.single('imageFile'), isLogge
 
 router.post("/perfil/:user_id/borrar", isLoggedIn, (req, res, next) => {
 
-
-
-    console.log(req.body)
+ const {user_id} = req.params
 
     User
-        .findByIdAndDelete(id)
+        .findByIdAndDelete(user_id)
         .then(() => { res.redirect("/") })
         .catch(error => next(error))
 })
